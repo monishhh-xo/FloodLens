@@ -1,0 +1,259 @@
+{
+  "model_name": "flood-occurred-logreg",
+  "model_version": "0.1.0",
+  "prototype": true,
+  "generated_at_utc": "2026-10-13T05:47:15+00:00",
+  "warning": "PROTOTYPE TRAINED ON SYNTHETIC DATA. Verified to carry no measurable signal (test ROC-AUC indistinguishable from a shuffled-label control). These metrics describe a synthetic dataset, NOT real-world Chennai flood accuracy. This model is retained as a documented negative result and must not be used for operational flood prediction.",
+  "primary_model": "logistic_regression",
+  "logistic_regression": {
+    "train": {
+      "n": 8000,
+      "accuracy": 0.5224,
+      "precision": 0.524,
+      "recall": 0.6063,
+      "f1": 0.5622,
+      "roc_auc": 0.5352,
+      "confusion_matrix": {
+        "labels": [
+          "0 = no flood",
+          "1 = flood occurred"
+        ],
+        "true_negative": 1726,
+        "false_positive": 2228,
+        "false_negative": 1593,
+        "true_positive": 2453
+      }
+    },
+    "test": {
+      "n": 2000,
+      "accuracy": 0.4965,
+      "precision": 0.5017,
+      "recall": 0.5727,
+      "f1": 0.5349,
+      "roc_auc": 0.4985,
+      "confusion_matrix": {
+        "labels": [
+          "0 = no flood",
+          "1 = flood occurred"
+        ],
+        "true_negative": 414,
+        "false_positive": 575,
+        "false_negative": 432,
+        "true_positive": 579
+      }
+    }
+  },
+  "random_forest_comparison": {
+    "train": {
+      "n": 8000,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": {
+        "labels": [
+          "0 = no flood",
+          "1 = flood occurred"
+        ],
+        "true_negative": 3954,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_positive": 4046
+      }
+    },
+    "test": {
+      "n": 2000,
+      "accuracy": 0.49,
+      "precision": 0.4956,
+      "recall": 0.5005,
+      "f1": 0.498,
+      "roc_auc": 0.4886,
+      "confusion_matrix": {
+        "labels": [
+          "0 = no flood",
+          "1 = flood occurred"
+        ],
+        "true_negative": 474,
+        "false_positive": 515,
+        "false_negative": 505,
+        "true_positive": 506
+      }
+    }
+  },
+  "majority_class_baseline": {
+    "strategy": "always predict 1",
+    "accuracy": 0.5055,
+    "positive_rate_in_test": 0.5055
+  },
+  "shuffled_label_control": {
+    "seed": 7,
+    "roc_auc_vs_true_labels": 0.4845,
+    "accuracy_vs_true_labels": 0.492,
+    "note": "Same pipeline and split, labels randomly permuted during training. Scores close to the primary model indicate the features carry no predictive information."
+  },
+  "univariate_feature_signal": {
+    "numeric": [
+      {
+        "feature": "humidity_pct",
+        "kind": "numeric",
+        "auc": 0.516,
+        "distance_from_chance": 0.016
+      },
+      {
+        "feature": "temperature_c",
+        "kind": "numeric",
+        "auc": 0.4909,
+        "distance_from_chance": 0.0091
+      },
+      {
+        "feature": "longitude",
+        "kind": "numeric",
+        "auc": 0.4913,
+        "distance_from_chance": 0.0087
+      },
+      {
+        "feature": "historical_floods",
+        "kind": "numeric",
+        "auc": 0.506,
+        "distance_from_chance": 0.006
+      },
+      {
+        "feature": "water_level_m",
+        "kind": "numeric",
+        "auc": 0.497,
+        "distance_from_chance": 0.003
+      },
+      {
+        "feature": "population_density",
+        "kind": "numeric",
+        "auc": 0.4971,
+        "distance_from_chance": 0.0029
+      },
+      {
+        "feature": "elevation_m",
+        "kind": "numeric",
+        "auc": 0.4974,
+        "distance_from_chance": 0.0026
+      },
+      {
+        "feature": "infrastructure",
+        "kind": "numeric",
+        "auc": 0.4981,
+        "distance_from_chance": 0.0019
+      },
+      {
+        "feature": "latitude",
+        "kind": "numeric",
+        "auc": 0.4983,
+        "distance_from_chance": 0.0017
+      },
+      {
+        "feature": "rainfall_mm",
+        "kind": "numeric",
+        "auc": 0.4987,
+        "distance_from_chance": 0.0013
+      },
+      {
+        "feature": "river_discharge_m3s",
+        "kind": "numeric",
+        "auc": 0.4988,
+        "distance_from_chance": 0.0012
+      }
+    ],
+    "categorical": [
+      {
+        "feature": "land_cover",
+        "kind": "categorical",
+        "levels": [
+          {
+            "level": "Agricultural",
+            "n": 1978,
+            "flood_rate": 0.5142
+          },
+          {
+            "level": "Desert",
+            "n": 2033,
+            "flood_rate": 0.516
+          },
+          {
+            "level": "Forest",
+            "n": 2005,
+            "flood_rate": 0.5037
+          },
+          {
+            "level": "Urban",
+            "n": 1938,
+            "flood_rate": 0.5155
+          },
+          {
+            "level": "Water Body",
+            "n": 2046,
+            "flood_rate": 0.48
+          }
+        ],
+        "flood_rate_spread": 0.036
+      },
+      {
+        "feature": "soil_type",
+        "kind": "categorical",
+        "levels": [
+          {
+            "level": "Clay",
+            "n": 1978,
+            "flood_rate": 0.5177
+          },
+          {
+            "level": "Loam",
+            "n": 1972,
+            "flood_rate": 0.4909
+          },
+          {
+            "level": "Peat",
+            "n": 2052,
+            "flood_rate": 0.5112
+          },
+          {
+            "level": "Sandy",
+            "n": 1954,
+            "flood_rate": 0.5133
+          },
+          {
+            "level": "Silt",
+            "n": 2044,
+            "flood_rate": 0.4956
+          }
+        ],
+        "flood_rate_spread": 0.0268
+      }
+    ]
+  },
+  "verdict": {
+    "signal_detected": false,
+    "test_auc": 0.4985,
+    "auc_above_chance": -0.0015,
+    "control_auc": 0.4845,
+    "margin_over_control": 0.014,
+    "accuracy_improvement_over_baseline": -0.007,
+    "thresholds": {
+      "min_auc": 0.55,
+      "min_margin_over_control": 0.03
+    },
+    "summary": "No usable signal. Test ROC-AUC is indistinguishable from a shuffled-label control and adds essentially nothing over the majority-class baseline, so this artifact must not be used to predict real floods."
+  },
+  "dataset": {
+    "path": "C:\\Users\\MONISH K R\\OneDrive\\Desktop\\NEXORA\\data\\flood_risk_dataset_india.csv",
+    "rows": 10000,
+    "columns": 14,
+    "sha256": "ea0924a7a36ab7c1d153fac6675c6cf72cd3d3d4373e1a0ad388676a01e3f88a",
+    "provenance": "Flood risk dataset for India, supplied as a single CSV of 10,000 synthetic samples. It is NOT an observational record of real flood events."
+  },
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  }
+}

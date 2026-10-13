@@ -1,0 +1,89 @@
+{
+  "model_name": "flood-occurred-logreg",
+  "model_version": "0.1.0",
+  "artifact": "flood_model.joblib",
+  "task": "binary classification (flood_occurred)",
+  "algorithm": "LogisticRegression",
+  "prototype": true,
+  "reliable": false,
+  "warning": "PROTOTYPE TRAINED ON SYNTHETIC DATA. Verified to carry no measurable signal (test ROC-AUC indistinguishable from a shuffled-label control). These metrics describe a synthetic dataset, NOT real-world Chennai flood accuracy. This model is retained as a documented negative result and must not be used for operational flood prediction.",
+  "trained_at_utc": "2026-10-13T05:47:15+00:00",
+  "random_state": 42,
+  "test_size": 0.2,
+  "target_column": "flood_occurred",
+  "features": [
+    "latitude",
+    "longitude",
+    "rainfall_mm",
+    "temperature_c",
+    "humidity_pct",
+    "river_discharge_m3s",
+    "water_level_m",
+    "elevation_m",
+    "population_density",
+    "infrastructure",
+    "historical_floods",
+    "land_cover",
+    "soil_type"
+  ],
+  "numeric_features": [
+    "latitude",
+    "longitude",
+    "rainfall_mm",
+    "temperature_c",
+    "humidity_pct",
+    "river_discharge_m3s",
+    "water_level_m",
+    "elevation_m",
+    "population_density",
+    "infrastructure",
+    "historical_floods"
+  ],
+  "categorical_features": [
+    "land_cover",
+    "soil_type"
+  ],
+  "training_row_count": 8000,
+  "test_row_count": 2000,
+  "imputation": {
+    "numeric_mean": {
+      "latitude": 22.425285,
+      "longitude": 82.57716,
+      "rainfall_mm": 149.51528,
+      "temperature_c": 29.956225,
+      "humidity_pct": 59.54879,
+      "river_discharge_m3s": 2511.029864,
+      "water_level_m": 5.013101,
+      "elevation_m": 4435.373243,
+      "population_density": 5042.004216,
+      "infrastructure": 0.4995,
+      "historical_floods": 0.504125
+    },
+    "categorical_mode": {
+      "land_cover": "Desert",
+      "soil_type": "Peat"
+    }
+  },
+  "dataset": {
+    "path": "C:\\Users\\MONISH K R\\OneDrive\\Desktop\\NEXORA\\data\\flood_risk_dataset_india.csv",
+    "rows": 10000,
+    "columns": 14,
+    "sha256": "ea0924a7a36ab7c1d153fac6675c6cf72cd3d3d4373e1a0ad388676a01e3f88a",
+    "provenance": "Flood risk dataset for India, supplied as a single CSV of 10,000 synthetic samples. It is NOT an observational record of real flood events."
+  },
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  },
+  "limitations": [
+    "Dataset is synthetic; the label is statistically independent of all features.",
+    "Dataset is India-wide with only a handful of rows near Chennai.",
+    "Elevation values in the dataset are implausible for city-scale analysis.",
+    "The model cannot consume live Chennai zone inputs without imputing several columns.",
+    "It is not an official flood-warning system and must not inform emergency decisions."
+  ]
+}
